@@ -1,0 +1,8 @@
+.DS_Store
+Icon?
+
+node_modules
+*.log
+*.gz
+
+.env
