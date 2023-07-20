@@ -16,14 +16,14 @@ const RecordSchema = new Schema({
     type: Number,
     required: true,
   },
-  userId: {
-    type: Schema.Types.ObjectId,
-    required: true,
-  },
-  categoryId: {
-    type: Schema.Types.ObjectId,
-    required: true,
-  }
+  // userId: {
+  //   type: Schema.Types.ObjectId,
+  //   required: true,
+  // },
+  // categoryId: {
+  //   type: Schema.Types.ObjectId,
+  //   required: true,
+  // }
 })
 
 module.exports = mongoose.model('Record', RecordSchema)
