@@ -8,7 +8,7 @@ const methodOverride = require('method-override')
 // 內部
 const app = express()
 const port = 3000
-// const routes = require('./routes')
+const routes = require('./routes')
 require('dotenv').config()
 require('./config/mongoose')
 
@@ -17,7 +17,7 @@ app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs') // 將視圖引擎設置為 Handlebars。這樣一來，當你使用 res.render 方法來呈現視圖時，Express 將使用 Handlebars 模板引擎來編譯視圖並返回給客戶端
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
-// app.use(routes)
+app.use(routes)
 
 app.get('/', (req, res, next) => {
   res.render('index')
