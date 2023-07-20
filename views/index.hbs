@@ -3,19 +3,19 @@
     <div class="mb-auto p-2">
       <form action="">
         <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-          <option selected>篩選類別...</option>
-          <option value="家居物業">家居物業</option>
-          <option value="交通出行">交通出行</option>
-          <option value="休閒娛樂">休閒娛樂</option>
-          <option value="餐飲食品">餐飲食品</option>
-          <option value="其他">其他</option>
+          <option selected>Filter Category...</option>
+          <option value="家居物業">Home & Property</option>
+          <option value="交通出行">Transportation</option>
+          <option value="休閒娛樂">Leisure & Entertainment</option>
+          <option value="餐飲食品">Dining & Food</option>
+          <option value="其他">Other</option>
         </select>
       </form>
     </div>
 
     <div class="d-flex p-2 m-2">
-      <p>總金額</p>
-      <span class="text-center fs-1" style="height: 50px; width: 70%" style="color:red">數字
+      <p>Total Amount</p>
+      <span class="text-center fs-1" style="height: 50px; width: 70%" style="color:red">Amount
       </span>
     </div>
     <div class=" p-2 ">
@@ -38,7 +38,7 @@
               {{this.amount}}
             </td>
             <td>
-              <a href="" class="btn btn-light">修改</a>
+              <a href="" class="btn btn-light">Edit</a>
             </td>
             <td>
               <form action="./records/{{this._id}}?_method=DELETE" method="POST" style="display: inline;">
@@ -50,6 +50,6 @@
         </tbody>
       </table>
     </div>
-    <a href="/records/create" class="btn btn-warning mt-3 mb-5">新增消費</a>
+    <a href="/records/new" class="btn btn-warning mt-3 mb-5">Add Record</a>
   </div>
 </div>
