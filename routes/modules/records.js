@@ -12,6 +12,13 @@ router.get('/new', (req, res) => {
 })
 
 // post created data
+router.post('/', (req, res) => {
+  // const user = req.user
+  const { name, date, category, amount } = req.body
+  return Record.create({ name, date, category, amount })
+    .then(() => res.redirect('/'))
+    .catch((error) => console.log(error))
+})
 
 // show edit page
 
