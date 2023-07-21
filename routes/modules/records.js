@@ -25,7 +25,12 @@ router.post('/', (req, res) => {
 // update edite data
 
 // delete record
-
+router.delete('/:id', (req, res) => {
+  const _id = req.params.id // 為什麼不能用 req.params.＿id
+  return Record.findOne({ _id })
+    .then((record) => record.remove())
+    .then(() => res.redirect('/'))
+})
 
 // exports
 module.exports = router
