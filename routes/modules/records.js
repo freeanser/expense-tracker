@@ -21,6 +21,13 @@ router.post('/', (req, res) => {
 })
 
 // show edit page
+router.get('/:id', (req, res) => {
+  const _id = req.params.id
+  return Record.findOne({ _id })
+    .lean()
+    .then((record) => res.render('edit', { record }))
+    .catch(error => console.log(error))
+})
 
 // update edite data
 
@@ -28,6 +35,7 @@ router.post('/', (req, res) => {
 router.delete('/:id', (req, res) => {
   const _id = req.params.id // 為什麼不能用 req.params.＿id
   return Record.findOne({ _id })
+    .lean()
     .then((record) => record.remove())
     .then(() => res.redirect('/'))
 })
