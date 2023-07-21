@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
 })
 
 // show edit page
-router.get('/:id', (req, res) => {
+router.get('/:id/edit', (req, res) => {
   const _id = req.params.id
   return Record.findOne({ _id })
     .lean()
@@ -30,13 +30,23 @@ router.get('/:id', (req, res) => {
 })
 
 // update edite data
+router.put('/:id', (req, res) => {
+  const _id = req.params.id
+  const { name, date, category, amount } = req.body
+  // findOneAndUpdate:接受两个参数：一个查询条件的对象和一个包含要更新的字段和值的对象
+  // { new: true }: 为了确保返回更新后的文档而不是更新前的文档
+  return Record.findOneAndUpdate({ _id }, { name, date, category, amount }, { new: true })
+    .lean()
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
 
 // delete record
 router.delete('/:id', (req, res) => {
   const _id = req.params.id // 為什麼不能用 req.params.＿id
-  return Record.findOne({ _id })
+  return Record.findOneAndDelete({ _id })
     .lean()
-    .then((record) => record.remove())
+    // .then((record) => record.remove())
     .then(() => res.redirect('/'))
 })
 
