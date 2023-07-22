@@ -11,6 +11,11 @@ router.get('/login', (req, res) => {
   return res.render('login')
 })
 
+// show register page
+router.get('/register', (req, res) => {
+  return res.render('register')
+})
+
 // submit login 
 
 
