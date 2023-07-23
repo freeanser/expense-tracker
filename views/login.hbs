@@ -2,6 +2,7 @@
   <div class=" d-flex align-items-stretch flex-column mb-3" style="height: 200px; width: 50%">
     <h1>Login</h1>
     <small class="mb-3">Please log in first to use your Expense Tracker.</small>
+    {{> message}}
 
     <form action="/users/login" method="POST" class="d-flex align-items-center flex-column mb-3 form-control ">
       <div class="form-group col-8 mb-3">

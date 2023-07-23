@@ -6,6 +6,7 @@ const usePassport = require('./config/passport')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')// 為了讀取到 req.body 的套件
 const methodOverride = require('method-override')
+const flash = require('connect-flash')
 const moment = require('moment');
 
 // 內部
@@ -34,11 +35,14 @@ app.use(methodOverride('_method'))
 
 // 呼叫 Passport 函式並傳入 app，這條要寫在路由之前
 usePassport(app)
+app.use(flash())
 app.use((req, res, next) => {
   // console.log(req.user) 
   // 放在 res.locals 裡的資料，所有的 view 都可以存取
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user
+  res.locals.success_msg = req.flash('success_msg')  // 設定 success_msg 訊息
+  res.locals.warning_msg = req.flash('warning_msg')  // 設定 warning_msg 訊息
   next()
 })
 app.use(routes)
