@@ -33,11 +33,11 @@ module.exports = app => {
   passport.serializeUser((user, done) => {
     done(null, user.id)
   })
-  // passport.deserializeUser接著將存入 Session 中的那筆識別資訊再度提出，轉換成需要渲染在頁面的使用者物件
+  // passport.deserializeUser接著將存入 Session 中的那筆識別資訊再度提出(user 資訊)，轉換成需要渲染在頁面的使用者物件
   passport.deserializeUser((id, done) => {
     User.findById(id)
       .lean()
-      .then(user => done(null, user))
+      .then(user => done(null, user)) // 取出的 user 資訊，之後會放在 req.user 裡以供後續使用
       .catch(err => done(err, null))
   })
 }

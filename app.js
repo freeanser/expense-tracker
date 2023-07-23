@@ -34,6 +34,13 @@ app.use(methodOverride('_method'))
 
 // 呼叫 Passport 函式並傳入 app，這條要寫在路由之前
 usePassport(app)
+app.use((req, res, next) => {
+  // console.log(req.user) 
+  // 放在 res.locals 裡的資料，所有的 view 都可以存取
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  next()
+})
 app.use(routes)
 
 
