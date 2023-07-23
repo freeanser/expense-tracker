@@ -13,11 +13,6 @@ router.get('/login', (req, res) => {
   return res.render('login')
 })
 
-// show register page
-router.get('/register', (req, res) => {
-  return res.render('register')
-})
-
 // submit login 
 // 加入 middleware，驗證 request 登入狀態
 // middleware: 當使用者在 /login 位置發送 POST 請求時，驗證中間件會先執行，然後才會渲染請求的回應畫面
@@ -25,6 +20,17 @@ router.post('/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/users/login'
 }))
+
+// logout function
+router.get('/logout', (req, res) => {
+  req.logout()
+  res.redirect('/users/login')
+})
+
+// show register page
+router.get('/register', (req, res) => {
+  return res.render('register')
+})
 
 // submit register
 router.post('/register', (req, res) => {
