@@ -1,6 +1,7 @@
 // add express and router
 const express = require('express')
 const router = express.Router()
+const passport = require('passport')
 
 // add models
 const Category = require('../../models/category')
@@ -18,7 +19,12 @@ router.get('/register', (req, res) => {
 })
 
 // submit login 
-
+// 加入 middleware，驗證 request 登入狀態
+// middleware: 當使用者在 /login 位置發送 POST 請求時，驗證中間件會先執行，然後才會渲染請求的回應畫面
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/users/login'
+}))
 
 // submit register
 router.post('/register', (req, res) => {
