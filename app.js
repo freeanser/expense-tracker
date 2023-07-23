@@ -26,7 +26,7 @@ app.engine('hbs', exphbs({
 }))
 app.set('view engine', 'hbs') // 將視圖引擎設置為 Handlebars。這樣一來，當你使用 res.render 方法來呈現視圖時，Express 將使用 Handlebars 模板引擎來編譯視圖並返回給客戶端
 app.use(session({
-  secret: 'ThisIsMySecret',
+  secret: 'SESSION_SECRET',
   resave: false,
   saveUninitialized: true
 }))
