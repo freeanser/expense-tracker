@@ -1,0 +1,22 @@
+[
+  {
+    "name": "廣志",
+    "email": "user1@example.com",
+    "password": "123",
+    "userRecords": [
+      1,
+      2,
+      3
+    ]
+  },
+  {
+    "name": "小葵",
+    "email": "user2@example.com",
+    "password": "321",
+    "userRecords": [
+      4,
+      5,
+      6
+    ]
+  }
+]
