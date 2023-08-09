@@ -1,37 +1,37 @@
 {
   "records": [
     {
-      "name": "房租還是貴森森",
+      "name": "房租",
       "category": "家居物業",
       "date": "2021-01-01",
       "amount": 10000
     },
     {
-      "name": "搭機振興航空業",
+      "name": "高鐵來回票",
       "category": "交通出行",
       "date": "2021-01-01",
       "amount": 1000
     },
     {
-      "name": "爽看無限列車",
+      "name": "爽看Netflix",
       "category": "休閒娛樂",
       "date": "2021-02-01",
       "amount": 1000
     },
     {
-      "name": "包你發娛樂城",
+      "name": "網美館門票",
       "category": "休閒娛樂",
       "date": "2021-02-01",
       "amount": 100
     },
     {
-      "name": "怒吃海底撈",
+      "name": "怒吃和牛涮",
       "category": "餐飲食品",
       "date": "2021-03-01",
       "amount": 1000
     },
     {
-      "name": "比特幣買了就跌ㄚ",
+      "name": "包紅包",
       "category": "其他",
       "date": "2021-03-01",
       "amount": 1000

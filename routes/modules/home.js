@@ -11,9 +11,23 @@ router.get('/', (req, res) => {
   const userId = req.user._id
   Record.find({ userId })
     .lean()
-    .sort({ _id: 'asc' })
-    .then(records => res.render('index', { records }))
-    .catch(error => console.log(error))
+    .then(records => {
+      console.log('userId: ', userId)
+      let totalAmount = 0
+      Category.find()
+        .lean()
+        .then(categories => {
+          records.forEach(function sumTotal(record) {
+            categories.forEach(function mapIcons(category) {
+              if (category.name === record.category) { record.icon = category.icon }
+            })
+            totalAmount += record.amount
+          })
+          res.render('index', { records, totalAmount })
+        })
+        .catch(error => console.error(error))
+    })
+    .catch(error => console.error(error))
 })
 
 

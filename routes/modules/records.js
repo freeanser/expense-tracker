@@ -11,13 +11,20 @@ router.get('/new', (req, res) => {
   return res.render('new')
 })
 
-// post created data
-router.post('/', (req, res) => {
+// create record- post created data
+// 因為是跟建立資料有關係，所以記得要 async, await
+router.post('/', async (req, res) => {
+  // 拿出 新的 record 資料 
   const userId = req.user._id
   const { name, date, category, amount } = req.body
-  return Record.create({ name, date, category, amount, userId })
+  // 找出 record.category = Category.name 的資料
+  const categoryData = await Category.findOne({ name: category })
+    .lean()
+    .catch(error => console.log(error))
+
+  return Record.create({ name, date, category, amount, userId, categoryId: categoryData._id })
     .then(() => res.redirect('/'))
-    .catch((error) => console.log(error))
+    .catch(error => console.log(error))
 })
 
 // show edit page
