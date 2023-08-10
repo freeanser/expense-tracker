@@ -10,7 +10,7 @@ const recordSchema = new Schema({
   },
   category: {
     type: String,
-    enum: ['家居物業', '交通出行', '休閒娛樂', '餐飲食品', '其他'],
+    enum: ['Home & Propert', 'Transportation', 'Leisure & Entertainment', 'Dining & Food', 'Others'],
     required: false
   },
   date: {

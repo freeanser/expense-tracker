@@ -11,10 +11,15 @@ const moment = require('moment');
 
 // 內部
 const app = express()
-const port = 3000
+const PORT = process.env.PORT || 3000
 const routes = require('./routes')
 require('dotenv').config()
 require('./config/mongoose')
+require('handlebars-helpers')()
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
 // 引用
 app.engine('hbs', exphbs({
@@ -26,7 +31,7 @@ app.engine('hbs', exphbs({
 }))
 app.set('view engine', 'hbs') // 將視圖引擎設置為 Handlebars。這樣一來，當你使用 res.render 方法來呈現視圖時，Express 將使用 Handlebars 模板引擎來編譯視圖並返回給客戶端
 app.use(session({
-  secret: 'SESSION_SECRET',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
@@ -48,6 +53,6 @@ app.use((req, res, next) => {
 app.use(routes)
 
 
-app.listen(port, () => {
-  console.log(`Serve is running on http://localhost:${port}`)
+app.listen(PORT, () => {
+  console.log(`Serve is running on http://localhost:${PORT}`)
 })

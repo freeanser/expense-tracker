@@ -1,18 +1,36 @@
 <div class="d-flex justify-content-center">
   <div class=" d-flex align-self-center align-items-stretch flex-column mb-3" style="height: 200px; width: 50%">
     <div class="mb-auto p-2">
-      <form action="">
-        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-          <option selected>Filter Category...</option>
-          <option value="家居物業">Home & Property</option>
-          <option value="交通出行">Transportation</option>
-          <option value="休閒娛樂">Leisure & Entertainment</option>
-          <option value="餐飲食品">Dining & Food</option>
-          <option value="其他">Other</option>
-        </select>
-      </form>
-    </div>
+      <form class="w-100 form-group filter" id="filter-category" action="/records/filter" method="POST">
+        <div class="w-100 filter-form custom-select d-flex justify-content-center">
+          <select class="w-75 custom-filter" id="filter" name="filter" aria-describedby="filter-category"
+            onchange="this.form.submit()" aria-label="filter-category">
+            {{!-- selected:在初始加载页面时会被默认选中
+            disabled:展示不可选的选项 --}}
+            <option value="0" selected disabled>Filter Category...</option>
 
+            {{!-- 不知道怎麼使用 {{#each}} --}}
+            {{!-- {{#each category}}
+            <option value="{{this.name}}" {{#if (eq filterCategory '{{this.name}}' )}}selected{{/if}}>{{this.name}}
+            </option>
+            {{/each}} --}}
+
+            <option value="Home & Propert" {{#if (eq filterCategory 'Home & Propert' )}}selected{{/if}}>Home &
+              Propert
+            </option>
+            <option value="Transportation" {{#if (eq filterCategory 'Transportation' )}}selected{{/if}}>Transportation
+            </option>
+            <option value="Leisure & Entertainment" {{#if (eq filterCategory 'Leisure & Entertainment'
+              )}}selected{{/if}}>Leisure & Entertainment</option>
+            <option value="Dining & Food" {{#if (eq filterCategory 'Dining & Food' )}}selected{{/if}}>Dining & Food
+            </option>
+            <option value="Others" {{#if (eq filterCategory 'Others' )}}selected{{/if}}>Others</option>
+
+          </select>
+        </div>
+      </form>
+      <a href="/" class="btn btn-light">All items</a>
+    </div>
     <div class="d-flex p-2 m-2">
       <p>Total Amount</p>
       <span class="text-center fs-1" style="height: 50px; width: 70%" style="color:red">Amount

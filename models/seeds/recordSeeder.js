@@ -54,7 +54,7 @@ db.once('open', () => {
             // userRecords = recordList + user._id
 
           })
-          console.log('userRecords: ', userRecords)
+          // console.log('userRecords: ', userRecords)
           return userRecords
         })
 

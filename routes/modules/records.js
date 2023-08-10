@@ -69,7 +69,29 @@ router.delete('/:id', (req, res) => {
     .then(() => res.redirect('/'))
 })
 
-
+// filter by categories
+router.post('/filter', (req, res) => {
+  const userId = req.user._id
+  const filterCategory = req.body.filter
+  return Record.find({ category: { $regex: filterCategory, $options: 'i' }, userId })
+    .lean()
+    .then(records => {
+      let totalAmount = 0
+      Category.find()
+        .lean()
+        .then(categories => {
+          records.forEach(function sumTotal(record) {
+            categories.forEach(function mapIcons(category) {
+              if (category.name === record.category) { record.icon = category.icon }
+            })
+            totalAmount += record.amount
+          })
+          res.render('index', { records, totalAmount, filterCategory })
+        })
+        .catch(error => console.error(error))
+    })
+    .catch(error => console.error(error))
+})
 
 // exports
 module.exports = router
