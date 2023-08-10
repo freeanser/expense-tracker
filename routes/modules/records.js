@@ -17,10 +17,11 @@ router.post('/', async (req, res) => {
   // 拿出 新的 record 資料 
   const userId = req.user._id
   const { name, date, category, amount } = req.body
-  // 找出 record.category = Category.name 的資料
-  const categoryData = await Category.findOne({ name: category })
-    .lean()
-    .catch(error => console.log(error))
+  // 找出 req.body.category = Category.name 的資料
+  const categoryData =
+    await Category.findOne({ name: category })
+      .lean()
+      .catch(error => console.log(error))
 
   return Record.create({ name, date, category, amount, userId, categoryId: categoryData._id })
     .then(() => res.redirect('/'))
@@ -31,21 +32,29 @@ router.post('/', async (req, res) => {
 router.get('/:id/edit', (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
+  // 確認只有相對應的 user 可以看到 _id 的物件的編輯畫面
   return Record.findOne({ _id, userId })
     .lean()
     .then((record) => res.render('edit', { record }))
     .catch(error => console.log(error))
 })
 
-// update edite data
-router.put('/:id', (req, res) => {
+// update edite data，因為要處裡 data ，所以要非同步
+router.put('/:id', async (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
   const { name, date, category, amount } = req.body
+
+  // 找到 req.body.name = Category.name 的物件，並命名為 categoryData
+  const categoryData =
+    await Category.findOne({ name: category })
+      .lean()
+      .catch(error => console.log(error))
+
   // findOneAndUpdate:接受两个参数：一个查询条件的对象和一个包含要更新的字段和值的对象
   // { new: true }: 为了确保返回更新后的文档而不是更新前的文档
-  return Record.findOneAndUpdate({ _id, userId }, { name, date, category, amount }, { new: true })
-    .lean()
+  return Record.findOneAndUpdate({ _id, userId }, { name, date, category, amount, userId, categoryId: categoryData._id },
+    { new: true })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
@@ -59,6 +68,8 @@ router.delete('/:id', (req, res) => {
     // .then((record) => record.remove())
     .then(() => res.redirect('/'))
 })
+
+
 
 // exports
 module.exports = router
