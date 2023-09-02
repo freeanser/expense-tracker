@@ -1,7 +1,7 @@
 {
   "categories": [
     {
-      "name": "Home & Propert",
+      "name": "Property",
       "icon": "fas fa-home"
     },
     {
@@ -9,11 +9,11 @@
       "icon": "fas fa-shuttle-van"
     },
     {
-      "name": "Leisure & Entertainment",
+      "name": "Entertainment",
       "icon": "fas fa-grin-beam"
     },
     {
-      "name": "Dining & Food",
+      "name": "Dining",
       "icon": "fas fa-utensils"
     },
     {

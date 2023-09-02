@@ -15,14 +15,13 @@
             </option>
             {{/each}} --}}
 
-            <option value="Home & Propert" {{#if (eq filterCategory 'Home & Propert' )}}selected{{/if}}>Home &
-              Propert
+            <option value="Property" {{#if (eq filterCategory 'Propert' )}}selected{{/if}}>Property
             </option>
             <option value="Transportation" {{#if (eq filterCategory 'Transportation' )}}selected{{/if}}>Transportation
             </option>
-            <option value="Leisure & Entertainment" {{#if (eq filterCategory 'Leisure & Entertainment'
-              )}}selected{{/if}}>Leisure & Entertainment</option>
-            <option value="Dining & Food" {{#if (eq filterCategory 'Dining & Food' )}}selected{{/if}}>Dining & Food
+            <option value="Entertainment" {{#if (eq filterCategory 'Entertainment' )}}selected{{/if}}>Entertainment
+            </option>
+            <option value="Dining" {{#if (eq filterCategory 'Dining' )}}selected{{/if}}>Dining
             </option>
             <option value="Others" {{#if (eq filterCategory 'Others' )}}selected{{/if}}>Others</option>
 
@@ -65,10 +64,10 @@
               {{this.amount}}
             </td>
             <td>
-              <a href="./records/{{this._id}}/edit" class="btn btn-light">Edit</a>
+              <a href="/records/{{this._id}}/edit" class="btn btn-light">Edit</a>
             </td>
             <td>
-              <form action="./records/{{this._id}}?_method=DELETE" method="POST" style="display: inline;">
+              <form action="/records/{{this._id}}?_method=DELETE" method="POST" style="display: inline;">
                 <button class="btn btn-danger" type="submit">delete</button>
               </form>
             </td>

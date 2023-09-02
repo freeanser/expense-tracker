@@ -2,7 +2,7 @@
   "records": [
     {
       "name": "房租",
-      "category": "Home & Propert",
+      "category": "Property",
       "date": "2021-01-01",
       "amount": 10000
     },
@@ -14,19 +14,19 @@
     },
     {
       "name": "爽看Netflix",
-      "category": "Leisure & Entertainment",
+      "category": "Entertainment",
       "date": "2021-02-01",
       "amount": 1000
     },
     {
       "name": "網美館門票",
-      "category": "Leisure & Entertainment",
+      "category": "Entertainment",
       "date": "2021-02-01",
       "amount": 100
     },
     {
       "name": "怒吃和牛涮",
-      "category": "Dining & Food",
+      "category": "Dining",
       "date": "2021-03-01",
       "amount": 1000
     },
