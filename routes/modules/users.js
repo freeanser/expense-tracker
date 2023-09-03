@@ -45,23 +45,18 @@ router.post('/register', (req, res) => {
   if (password !== confirmPassword) {
     errors.push({ message: 'The password does not match the confirmation password!' })
   }
-  if (errors.length) {
-    return res.render('register', {
-      errors,
-      name,
-      email,
-      password,
-      confirmPassword
-    })
-  }
 
   // 找找看～ if user already had an account
   User.findOne({ email })
     .then(user => {
-      if (user) {
-        errors.push({ message: 'This email is already registered' })
+      if (user) { errors.push({ message: 'This email is already registered' }) }
+      if (errors.length) {
         return res.render('register', {
-          errors, name, email, password, confirmPassword
+          errors,
+          name,
+          email,
+          password,
+          confirmPassword
         })
       }
       return bcrypt

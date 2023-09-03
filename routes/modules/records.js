@@ -1,6 +1,7 @@
 // add express and routes
 const express = require('express')
 const router = express.Router()
+const { DateTime } = require('luxon');
 
 // add models
 const Category = require('../../models/category')
@@ -35,7 +36,10 @@ router.get('/:id/edit', (req, res) => {
   // 確認只有相對應的 user 可以看到 _id 的物件的編輯畫面
   return Record.findOne({ _id, userId })
     .lean()
-    .then((record) => res.render('edit', { record }))
+    .then((record) => {
+      record.date = record.date.toISOString().split("T", 1)
+      return res.render('edit', { record })
+    })
     .catch(error => console.log(error))
 })
 
@@ -85,6 +89,7 @@ router.post('/filter', (req, res) => {
               if (category.name === record.category) { record.icon = category.icon }
             })
             totalAmount += record.amount
+            record.date = DateTime.fromJSDate(record.date, { zone: 'Asia/Taipei' }).toISODate();
           })
           res.render('index', { records, totalAmount, filterCategory })
         })

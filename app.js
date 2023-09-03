@@ -7,7 +7,7 @@ const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')// 為了讀取到 req.body 的套件
 const methodOverride = require('method-override')
 const flash = require('connect-flash')
-const moment = require('moment');
+
 
 // 內部
 const app = express()
@@ -42,7 +42,6 @@ app.use(methodOverride('_method'))
 usePassport(app)
 app.use(flash())
 app.use((req, res, next) => {
-  // console.log(req.user) 
   // 放在 res.locals 裡的資料，所有的 view 都可以存取
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user

@@ -1,6 +1,7 @@
 // add express and router
 const express = require('express')
 const router = express.Router()
+const { DateTime } = require('luxon');
 
 // add models
 const Category = require('../../models/category')
@@ -11,8 +12,8 @@ router.get('/', (req, res) => {
   const userId = req.user._id
   Record.find({ userId })
     .lean()
+    .sort({ date: 'asc' })
     .then(records => {
-      console.log('userId: ', userId)
       let totalAmount = 0
       Category.find()
         .lean()
@@ -22,6 +23,7 @@ router.get('/', (req, res) => {
               if (category.name === record.category) { record.icon = category.icon }
             })
             totalAmount += record.amount
+            record.date = DateTime.fromJSDate(record.date, { zone: 'Asia/Taipei' }).toISODate();
           })
           res.render('index', { records, totalAmount })
         })
