@@ -19,6 +19,7 @@ router.post('/', async (req, res) => {
   const userId = req.user._id
   const { name, date, category, amount } = req.body
   // 找出 req.body.category = Category.name 的資料
+
   const categoryData =
     await Category.findOne({ name: category })
       .lean()
