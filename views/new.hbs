@@ -2,7 +2,7 @@
   <div class=" d-flex align-items-stretch flex-column mb-3" style="height: 200px; width: 50%">
     <h5>Enter your expense</h5>
     <small class="mb-3">* Required field</small>
-
+    {{> message}}
     <form action="/records" method="POST" class="d-flex align-items-center flex-column mb-3 form-control ">
       <div class="form-group col-8 mb-3">
         <label for="name" class="col-sm-2 col-form-label">Name*:</label>
@@ -24,7 +24,7 @@
         <label for="category" class="col-sm-2 col-form-label">Category*:</label>
         <select class="form-select form-select-sm" id="category" name="category" aria-label="category"
           aria-label="category" required>
-          <option disabled>Filter Category...</option>
+          <option selected disabled>Filter Category...</option>
           <option value="Property">Property</option>
           <option value="Transportation">Transportation</option>
           <option value="Entertainment">Entertainment</option>

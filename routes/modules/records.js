@@ -17,17 +17,34 @@ router.get('/new', (req, res) => {
 router.post('/', async (req, res) => {
   // 拿出 新的 record 資料 
   const userId = req.user._id
-  const { name, date, category, amount } = req.body
-  // 找出 req.body.category = Category.name 的資料
+  const { name, category, amount } = req.body
 
-  const categoryData =
-    await Category.findOne({ name: category })
-      .lean()
-      .catch(error => console.log(error))
+  let date = new Date(req.body.date)
+  console.log("date:", date)
 
-  return Record.create({ name, date, category, amount, userId, categoryId: categoryData._id })
-    .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
+  date = date.toISOString().split("T", 1)
+  console.log("date:", date)
+
+  // async / await 的例外處理 try... catch...
+  try {
+    // 找出 req.body.category = Category.name 的資料
+    const categoryData = await Category.findOne({ name: category }).lean().catch(error => console.log(error))
+    const errors = []
+
+    // 列出例外處理
+    if (!categoryData || !categoryData._id) {
+      // 提醒使用者 
+      errors.push({ message: "Please select a category." })
+      //  回到輸入的畫面
+      res.render('new', { name, date, amount, errors })
+      console.log("date:", date)
+    } else {
+      await Record.create({ name, date, category, amount, userId, categoryId: categoryData._id })
+      return res.redirect('/')
+    }
+  } catch (error) {
+    console.error(error)
+  }
 })
 
 // show edit page
@@ -42,6 +59,7 @@ router.get('/:id/edit', (req, res) => {
       return res.render('edit', { record })
     })
     .catch(error => console.log(error))
+  // console.log('Hi') // 上述程式碼因為有 return，所以程式碼只執行到 return 那裡，不會執行到 console.log 這裡
 })
 
 // update edite data，因為要處裡 data ，所以要非同步

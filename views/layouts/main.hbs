@@ -16,7 +16,7 @@
 <body>
 
   <nav class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-between p-3">
-    <a class="navbar-brand" href="/">{{#if isAuthenticated}}{{user.name}}'s{{/if}}Expense Tracker</a>
+    <a class="navbar-brand" href="/">{{#if isAuthenticated}}{{user.name}}'s {{/if}}Expense Tracker</a>
     <div class="button">
       {{#if isAuthenticated}}
       {{!-- isAuthenticated 是 Passport 套件提供的一個方法，用於檢查使用者是否已經登入（authenticated）。它是一個布林值 --}}
